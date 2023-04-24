@@ -5,11 +5,34 @@
   </div>
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
   <label for="username">Username</label>
-  <input type="username" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+  <input type="username"  name="username" class="form-control" placeholder="Username" required autofocus>
   <label for="passw">Password</label>
-  <input type="password" id="passw" name="passw" class="form-control" placeholder="Password" required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <input type="password"  name="password" class="form-control" placeholder="Password" required>
+  <input class="btn btn-lg btn-primary btn-block" type="button" onclick="loginUser()" value="Sign in">
 
 </form>
 </div>
 <hr>
+<script>
+ 
+    function loginUser(){
+    
+      const myFormData = new FormData(document.querySelector('form'));
+    
+      let configObj={
+        method: 'POST',
+        body: myFormData
+      }
+  
+    postData('../server/login.php',configObj,render)
+  }
+
+    function render(data){
+      console.log(data);
+      if(data.msg=="OK"){
+        location.href="index.php"
+      }
+    }
+  
+  
+</script>

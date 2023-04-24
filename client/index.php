@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  print_r($_SESSION);
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,7 +15,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/jumbotron/">
     <link rel="stylesheet" href="signin.css">
     
-    
+    <script src="utils.js"></script>    
 
     <!-- Bootstrap core CSS -->
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -53,8 +57,22 @@
       </li>
     </ul>
     
-    <a class="nav-link btn btn-outline-light my-2 my-sm-0" href="index.php?prog=login.php">Login</a>
-    <a class="nav-link btn btn-outline-light my-2 my-sm-0" href="index.php?prog=register.php">Register</a>
+  <?php
+    if(isset($_SESSION['username'])){
+      echo"
+      <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='#'>{$_SESSION['username']}</a>
+      <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='index.php?prog=logout.php'>Log out</a>
+      ";
+    }
+    else{
+      echo"
+      <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='index.php?prog=login.php'>Login</a>
+      <a class='nav-link btn btn-outline-light my-2 my-sm-0' href='index.php?prog=register.php'>Register</a>
+      ";
+    }
+  ?>
+
+    
     
   </div>
 </nav>
@@ -79,4 +97,5 @@
       
   </body>
   <script src="menu.js"></script>
+  
 </html>
